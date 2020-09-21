@@ -11,7 +11,7 @@ from tqdm import tqdm
 
 
 api = 'https://safe-transaction.mainnet.gnosis.io/api/v1'
-ychad = '0xFEB4acf3df3cDEA7399794D0869ef76A6EfAff52'
+vchad = '0xFEB4acf3df3cDEA7399794D0869ef76A6EfAff52'
 
 
 @cached(LRUCache(1000))
@@ -48,8 +48,8 @@ def ens_token_id_to_name(token_id):
 
 @cached(LRUCache(1000))
 def ens_reverser(address):
-    if address == ychad:
-        return 'ychad.eth'
+    if address == vchad:
+        return 'vchad.eth'
     reverser = web3.ens.reverser(address)
     if reverser is None:
         return address
@@ -123,4 +123,4 @@ def write_csv(transactions, out_name):
 
 
 def audit():
-    write_csv(fetch_transactions(ychad), 'ychad-audit.csv')
+    write_csv(fetch_transactions(vchad), 'vchad-audit.csv')
